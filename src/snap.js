@@ -490,6 +490,7 @@
                             absoluteTranslation = action.translate.get.matrix(4),
                             whileDragX = thePageX - cache.startDragX,
                             openingLeft = absoluteTranslation > 0,
+                            openingRight = absoluteTranslation < 0,
                             translateTo = whileDragX,
                             diff;
 
@@ -566,7 +567,7 @@
                                     percentage: (absoluteTranslation/settings.maxPosition)*100
                                 }
                             };
-                        } else {
+                        } else if (openingRight) {
                             // Pulling too far to the left
                             if (settings.minPosition > absoluteTranslation) {
                                 diff = (absoluteTranslation - settings.minPosition) * settings.resistance;
